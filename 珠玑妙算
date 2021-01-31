@@ -1,0 +1,27 @@
+from collections import Counter
+class Solution(object):
+    def masterMind(self, solution, guess):
+        """
+        :type solution: str
+        :type guess: str
+        :rtype: List[int]
+        """
+        dicts = Counter(solution)
+        dictg = Counter(guess)
+        answer = [0,0]
+        for i in range(len(solution)):
+            if solution[i] == guess[i]:
+                answer[0] += 1
+                dicts[solution[i]] -= 1
+                dictg[guess[i]] -= 1
+        for i in range(len(solution)):
+            if guess[i] in solution and dicts[guess[i]] > 0 and dictg[guess[i]] > 0:
+                answer[1] += 1
+                dicts[guess[i]] -= 1
+                dictg[guess[i]] -= 1
+
+
+
+
+
+        return answer
